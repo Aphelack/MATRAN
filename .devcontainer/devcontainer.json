@@ -12,7 +12,6 @@
       "version": "3.11"
     }
   },
-
   "customizations": {
     "vscode": {
       "extensions": [
@@ -28,9 +27,8 @@
         "hediet.debug-visualizer",
         "ms-vsliveshare.vsliveshare",
         "eamodio.gitlens",
-        "visualstudioexptteam.vscodeintellicode"
+        "sswg.swift-lang"
       ],
-      
       "settings": {
         "FSharp.inlayHints.typeAnnotations": true,
         "FSharp.inlayHints.parameterNames": true,
@@ -49,16 +47,12 @@
       }
     }
   },
-
-  "postCreateCommand": "echo 'Container ready' && dotnet --version",
-
+  "postCreateCommand": "echo 'Container ready' && swift --version && dotnet --version",
   "mounts": [
     "source=swift-interpreter-nuget,target=/root/.nuget,type=volume"
   ],
-
   "remoteUser": "vscode",
   "updateRemoteUserUID": true,
-  
   "portsAttributes": {
     "8080": {
       "label": "Visualizer",
@@ -69,9 +63,7 @@
       "onAutoForward": "notify"
     }
   },
-
   "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
-  
   "remoteEnv": {
     "GIT_EDITOR": "code --wait"
   }
