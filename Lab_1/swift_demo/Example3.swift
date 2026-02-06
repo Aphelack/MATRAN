@@ -10,6 +10,7 @@ struct Point {
 }
 
 func factorial(_ n: Int) -> Int {
+    precondition(n >= 0, "factorial is only defined for n >= 0")
     if n <= 1 {
         return 1
     }
