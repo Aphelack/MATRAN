@@ -1,0 +1,18 @@
+{
+  "name": "FSharp Development",
+  "image": "mcr.microsoft.com/dotnet/sdk:9.0",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-dotnettools.csharp",
+        "ionide.ionide-fsharp",
+        "ms-dotnettools.dotnet-interactive-vscode"
+      ]
+    }
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/dotnet:2": {
+      "version": "9.0"
+    }
+  }
+}
