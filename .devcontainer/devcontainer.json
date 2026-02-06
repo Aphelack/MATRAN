@@ -1,0 +1,78 @@
+{
+  "name": "Swift Parser & Interpreter in F#",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".."
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/dotnet:2": {
+      "version": "9.0"
+    },
+    "ghcr.io/devcontainers/features/python:1": {
+      "version": "3.11"
+    }
+  },
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ionide.ionide-fsharp",
+        "ms-dotnettools.csharp",
+        "GitHub.copilot",
+        "GitHub.copilot-chat",
+        "GitHub.vscode-pull-request-github",
+        "josefpihrt-vscode.roslynator",
+        "ms-dotnettools.vscode-dotnet-runtime",
+        "tintoy.msbuild-project-tools",
+        "hediet.vscode-drawio",
+        "hediet.debug-visualizer",
+        "ms-vsliveshare.vsliveshare",
+        "eamodio.gitlens",
+        "visualstudioexptteam.vscodeintellicode"
+      ],
+      
+      "settings": {
+        "FSharp.inlayHints.typeAnnotations": true,
+        "FSharp.inlayHints.parameterNames": true,
+        "FSharp.verboseLogging": false,
+        "FSharp.fsac.netCoreDllFlag": "--use-sdk-refs",
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+          "source.fixAll": "explicit"
+        },
+        "files.autoSave": "afterDelay",
+        "github.copilot.enable": {
+          "*": true,
+          "plaintext": true,
+          "markdown": true
+        }
+      }
+    }
+  },
+
+  "postCreateCommand": "echo 'Container ready' && dotnet --version",
+
+  "mounts": [
+    "source=swift-interpreter-nuget,target=/root/.nuget,type=volume"
+  ],
+
+  "remoteUser": "vscode",
+  "updateRemoteUserUID": true,
+  
+  "portsAttributes": {
+    "8080": {
+      "label": "Visualizer",
+      "onAutoForward": "openPreview"
+    },
+    "5000": {
+      "label": "REPL/API",
+      "onAutoForward": "notify"
+    }
+  },
+
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  
+  "remoteEnv": {
+    "GIT_EDITOR": "code --wait"
+  }
+}
